@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+  <head>
+    <title>Project Narwhal</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/boostrap-modal.css" rel="stylesheet" media="screen">
+    <link href="css/style.css" rel="stylesheet" media="screen">
+  </head>
+  <body>
+    <h1>
+      Project Narwhal
+      <img src="img/logo.jpg">
+    </h1>
+
+    <div class="container" >
+	    <div class="row-fluid">
+	   		<div class="span12">
+          <%var btnTxt = 'New Server';
+            if (server) {
+              btnTxt = 'Edit Server';
+            }%>
+	   			<a href="#" id="new-server-btn" class="btn btn-success btn-large span12"><%=btnTxt%></a>
+	   		</div>
+	   	</div>
+
+      <!-- server info -->
+      <div class="row-fluid">
+        <div class="span8">
+          <% if (server) { %>
+              <h3><%=server['name']%></h3>
+              Repo: <%=server['server']%>
+              <% var port = '3005';
+                if (settings['currentFolder'] == settings['folderTwo']) {
+                  port = '3010';
+              }%>
+              <div>Current Port: <%=port%></div>
+              <div>SHA: <%=settings['sha']%>
+              <div>
+              <div>Folder: <%=settings['currentFolder']%></div>
+                <br/><br/><br/>
+                <a href="#" id="update-btn" class="btn btn-primary btn-large span12">Update Server</a>
+              </div>
+          <% } %>
+        </div>
+
+   </div> <!-- end container -->
+
+   <!-- new server -->
+   <div id="new-server" class="modal hide fade" tabindex="-1" data-width="760">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3>New Server</h3>
+  </div>
+  <div class="modal-body">
+    <div class="row-fluid">
+      <div class="span12">
+      	<p>Name <input type="text" id="githubname" name="githubname" class="span12"></p>
+        <p>GitHub Clone<input type="text" id="githubclone" name="githubclone" class="span12"></p>
+        <p>Folder One<input type="text" id="folderOne" name="folderOne" class="span12"></p>
+        <p>Folder Two<input type="text" id="folderTwo" name="folderTwo" class="span12"></p>
+        <p><button type="button" class="btn btn-success" data-toggle="button" id="contDeploy">Continious Deployment On</button></p>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" data-dismiss="modal" class="btn">Close</button>
+    <button type="button" class="btn btn-primary" id="new-server-save">Save</button>
+  </div>
+</div>
+
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-modal.js"></script>
+    <script src="js/bootstrap-modalmanager.js"></script>
+    <script src="js/application.js"></script>
+  </body>
+</html>
